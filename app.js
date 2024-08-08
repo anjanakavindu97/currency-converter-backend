@@ -47,6 +47,12 @@ app.post('/api/convert', async (req,res)=>{
     }
 })
 
+//production script
+app.use(express.static('../frontend/dist'));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
+});
+
 //Start server
 app.listen(PORT,
     console.log(`server is running on port ${PORT}...`)
