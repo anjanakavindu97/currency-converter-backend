@@ -17,7 +17,6 @@ const apiLimiter = rateLimit({
 // Cors options
 const corsOption = {
     origin: 'http://localhost:5173',
-    credentials: true
 }
 
 // middlewares
@@ -26,6 +25,10 @@ app.use(apiLimiter);
 app.use(cors(corsOption));
 
 // Conversion
+app.get('/', (req,res)=>{
+    res.send('Currency Converter API')
+});
+
 app.post('/api/convert', async (req,res)=>{
     try {
         const {from, to, amount} = req.body
